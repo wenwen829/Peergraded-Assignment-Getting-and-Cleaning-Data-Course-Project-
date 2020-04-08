@@ -49,7 +49,7 @@ shorttable1<-merge(shorttable, activity_labels, by="activityId")%>%
   write.table(file="tidydataset.txt", row.names=FALSE)
 
 # To review the outcome
-answer <- read.table("test.txt", header = TRUE) 
+answer <- read.table("tidydataset.txt", header = TRUE) 
 View(answer) 
 
 
