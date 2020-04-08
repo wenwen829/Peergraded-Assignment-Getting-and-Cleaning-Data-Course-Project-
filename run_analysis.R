@@ -29,18 +29,16 @@ colnames(y_train)<-"activityId"; colnames(y_test)<-"activityId"
 colnames(subject_train)<-"subjectId";colnames(subject_test)<-"subjectId"
 colnames(activity_labels)<-c("activityId","activityType")
 colnames(x_train)<-columnames[,2]; colnames(x_test)<-columnames[,2]
-View(y_train);View(y_test);View(activity_labels);View(x_train)
 
 # Merge the train and test datasets with activityId and subjectId
-merged_train<-cbind(subject_train,y_train,x_train); dim(merged_train);View(merged_train)
-merged_test<-cbind(subject_test,y_test,x_test);dim(merged_test);View(merged_train)
-merged_total<-rbind(merged_train,merged_test);dim(merged_total);View(merged_total)
+merged_train<-cbind(subject_train,y_train,x_train); dim(merged_train);
+merged_test<-cbind(subject_test,y_test,x_test);dim(merged_test);
+merged_total<-rbind(merged_train,merged_test);dim(merged_total);
 names(merged_total)
 
 # Give descriptive names to all measurements
 selectednames<-(grepl("activityId|subjectId|mean\\(\\)|std\\(\\)", columnames[,2]))
 selectedcolumns<-merged_total[,selectednames==TRUE];dim(selectedcolumns)
-View(selectedcolumns)
 
 # Getting the average of each variable for each activity/subject combination
 shorttable<-aggregate(. ~subjectId+activityId, selectedcolumns, mean);dim(shorttable)
